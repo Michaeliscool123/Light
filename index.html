@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamp control</title>
+  <style>
+    .html {
+      background-color: black;
+    }
+
+    body {
+      background-color: #ADD8E6; /* Light blue color */
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+      height: 100%; /* Make sure body takes full height */
+      display: flex; /* Use flexbox for layout */
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom:20px;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    /* Style for the container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      /* justify-content: center; /* Center content vertically */ 
+      align-items: center;
+      height: 70vh; /* Make container full height of viewport */
+      background-color: #ADD8E6;
+      padding-top: 175px; /* Add padding to create space at the top */
+    }
+
+    /* Style for the light */
+    #light {
+      width: 125px;
+      height: 125px;
+      background-color: #ccc; /* Default color when off */
+      border-radius: 50%;
+      margin-bottom: 20px; /* Add margin below the light */
+    }
+    #light.on {
+      background-color: yellow;
+      box-shadow: 0 0 20px 10px yellow;
+    }
+
+    /* Style for the buttons */
+    button {
+      margin: 5px; /* Add margin around the buttons */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container"> <!-- Container to center the elements -->
+
+    <h1>Lamp Control</h1>
+
+    <a id="visitWebsiteButton" href="https://newprojectlamp-359ac-default-rtdb.firebaseio.com/" target="_blank" class="button">See Temperature</a>
+
+    <div id="light"></div> <!-- Element representing the light -->
+
+    <button id="turnOnButton">Turn On</button>
+    <button id="turnOffButton">Turn Off</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCOdkdhu1J_XiCC3g7FA8tNrpKYDr9u9xs",
+      authDomain: "newprojectlamp-359ac.firebaseapp.com",
+      databaseURL: "https://newprojectlamp-359ac-default-rtdb.firebaseio.com",
+      projectId: "newprojectlamp-359ac",
+      storageBucket: "newprojectlamp-359ac.appspot.com",
+      messagingSenderId: "982927128520",
+      appId: "1:982927128520:web:a444cf9b8c0e49a40132fd",
+      measurementId: "G-0WHBD2Q89T"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    // Get a reference to the database service
+    const database = getDatabase();
+
+    // Function to send data to Firebase
+    function sendData(state) {
+      console.log("Button clicked. State:", state);
+      set(ref(database, '/relay_state'), state);
+
+      // Update the light based on the state
+      const light = document.getElementById("light");
+      if (state) {
+        light.classList.add("on"); // Turn on the light
+        alert("Relay turned on!");
+      } else {
+        light.classList.remove("on"); // Turn off the light
+        alert("Relay turned off!");
+      }
+    }
+
+    // Bind event handlers to buttons
+    document.getElementById("turnOnButton").addEventListener("click", function() {
+      sendData(true);
+    });
+    document.getElementById("turnOffButton").addEventListener("click", function() {
+      sendData(false);
+    });
+  </script>
+
+</body>
+</html>
