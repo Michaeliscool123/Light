@@ -1,1 +1,2 @@
-This is a light control it help you close and open light. It also helps you save energy use, messuring the temperature and it's also connected with google real time firebase. 
+This is a light control that helps you close and open lights. It also helps you save energy use, measuring the temperature and it's also connected with Google Realtime Firebase. 
+Control the lamp here: (Superlightening.com)
