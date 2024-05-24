@@ -1,0 +1,26 @@
+adafruit-circuitpython-bme680
+adafruit-circuitpython-display-text
+adafruit-circuitpython-requests
+adafruit-circuitpython-busdevice
+adafruit-circuitpython-digitalio
+adafruit-circuitpython-board
+adafruit-circuitpython-displayio
+wifi
+socketpool
+
+
+{
+	"name": "lamp-control",
+	"version": "1.0.0",
+	"description": "Lamp control web interface",
+	"main": "index.js",
+	"dependencies": {
+		"firebase": "^10.10.0"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"start": "live-server"
+	},
+	"author": "",
+	"license": "ISC"
+}
