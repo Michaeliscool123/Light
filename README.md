@@ -4,21 +4,25 @@ This is a light control that helps you close and open lights. It also helps you 
 
 ## Hardware
 
-- Raspberry Pi 4
-- Arduino Uno
-- Temperature sensor (DS18B20)
+- Adafruit Reverse TFT ESP32-S2
+- BME680 Temperature Sensor
+- IoT Relay Device
 - LED display module
 - Jumper wires
+- Lamp
 - Breadboard
 - Resistors
+- Wattmeter
 
 ## Software
 
 - Python 3
-- Flask framework
 - HTML/CSS
 - JavaScript
-- Arduino IDE
+- Circuit Python
+
+## Setup
+
 
 
 Control the lamp [here](http://superlightening.com/). Using the website you can control the status of the lamp using the turn on and turn off buttons. Then see the temmperature sensor data by clicking the See Temperature button.
